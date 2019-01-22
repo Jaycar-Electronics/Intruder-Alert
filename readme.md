@@ -54,6 +54,10 @@ Connecting the PIR Sensor is very easy simply connect the VCC pin to the 3.3v ra
 
 On the Prototype Shield (XC3850) we placed the main components, LED’s, Switch, and resistors. We also cut the 40 pin header to get the 3 pin socket where we will insert the PIR sensor. The wiring was mainly done on the back of the prototype shield, in accordance with the above circuit diagram.
 
+![](images/underside.jpg) 
+
+This is the underside of the XC3850
+
 ![](images/step2.jpg)
 
 The prototype shield is then inserted on-top of the ESP8266 main board (XC3802), as shown below., Make sure the pins are correctly aligned and match.
