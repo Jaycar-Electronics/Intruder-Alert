@@ -2,6 +2,8 @@
 
 This is an updated version of our Intruder Alert project; designed to be both easier to manage and more secure.
 
+![hero](images/hero.jpg)
+
 The ideas don't just stop at a PIR sensor either; The code is very simple to understand and through the IFTTT service you can cause anything to trigger; such as using a button or light sensor.
 
 ## Table of Contents
