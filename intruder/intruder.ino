@@ -4,7 +4,8 @@
 const char *wifi_ssid = "LAB";
 const char *wifi_pass = "lab12345";
 
-const char *ifttt_url = "https://maker.ifttt.com/trigger/motion/with/key/Rg3Pj8f_-qyJTcT1YhhVb";
+//                                                  ie:  /motion/     ie: key/12341346564";
+const char *ifttt_url = "https://maker.ifttt.com/trigger/EVENT_NAME/with/key/MAKER_KEY";
 
 const int led_red = D6;
 const int led_green = D0;
@@ -30,18 +31,18 @@ void setup()
   Serial.printf("IP: %s\n", WiFi.localIP().toString().c_str());
   client.setInsecure();
 }
-
 void loop()
 {
   int detectedMotion = digitalRead(pir_sense);
-  digitalWrite(led_green, detectedMotion);
 
   if (detectedMotion)
   {
+    flashLed(led_green, 200);
+    flashLed(led_green, 200);
+
     if (armed)
     {
       sendNotification();
-      flashLed(led_green, 1000);
     }
   }
 
@@ -49,7 +50,7 @@ void loop()
   {
     //flash rapidly to show not armed
     digitalWrite(led_red, !digitalRead(led_red));
-    delay(200);
+    delay(1000);
   }
 
   if (checkButton())
@@ -58,22 +59,25 @@ void loop()
     digitalWrite(led_green, LOW);
     digitalWrite(led_red, LOW);
     armed = !armed;
-    if (armed){
+    if (armed)
+    {
+      delay(1000);
       flashLed(led_red, 200);
       flashLed(led_red, 200);
       flashLed(led_red, 200);
-      flashLed(led_red, 200);
-      delay(3000);
+      flashLed(led_red, 3000);
     }
   }
 }
 // =====================================================
 // Private functions below
 // =====================================================
-void flashLed(int pin, int ms){
+void flashLed(int pin, int ms)
+{
   digitalWrite(pin, HIGH);
   delay(ms);
   digitalWrite(pin, LOW);
+  delay(ms);
 }
 
 void setupPins()
@@ -86,11 +90,11 @@ void setupPins()
 
 bool checkButton()
 {
-  if (digitalRead(button_sense) == LOW)
+  if (digitalRead(button_sense) == HIGH)
   {
     delay(1000);
 
-    if (digitalRead(button_sense) == LOW)
+    if (digitalRead(button_sense) == HIGH)
     {
       return true;
     }
@@ -100,7 +104,7 @@ bool checkButton()
 
 void sendNotification()
 {
-  // should only be called when detected
+  // should only be called when wanting to send a notification
   HTTPClient http;
   http.begin(client, ifttt_url);
   int r = http.GET();
