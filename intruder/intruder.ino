@@ -1,8 +1,8 @@
 #include <ESP8266WiFi.h>
 #include <ESP8266HTTPClient.h>
 
-const char *wifi_ssid = "LAB";
-const char *wifi_pass = "lab12345";
+const char *wifi_ssid = "YOUR NETWORK NAME";
+const char *wifi_pass = "YOUR NETWORK PASSWORD"; 
 
 //                                                  ie:  /motion/     ie: key/12341346564";
 const char *ifttt_url = "https://maker.ifttt.com/trigger/EVENT_NAME/with/key/MAKER_KEY";
